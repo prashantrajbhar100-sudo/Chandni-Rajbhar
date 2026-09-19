@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Chandani ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff4d6d, #ff8fab, #c77dff);
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 800px;
+            padding: 45px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.13);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .top-heart {
+            font-size: 55px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        h1 {
+            font-size: clamp(40px, 8vw, 75px);
+            font-weight: 800;
+            margin: 15px 0 10px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .date {
+            font-size: 24px;
+            margin-bottom: 35px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            min-width: 110px;
+            padding: 20px 12px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.20);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .number {
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        .label {
+            margin-top: 5px;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .love-text {
+            margin-top: 35px;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        .birthday-message {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .birthday-message h2 {
+            font-size: 42px;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 25px;
+            animation: floatUp linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 35px 12px;
+            }
+
+            .box {
+                min-width: 75px;
+                padding: 15px 8px;
+            }
+
+            .number {
+                font-size: 27px;
+            }
+
+            .label {
+                font-size: 10px;
+            }
+
+            .date {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="top-heart">❤️</div>
+
+        <h1>HAPPY BIRTHDAY<br>CHANDANI</h1>
+
+        <div class="date">
+            🎂 20 November 2026 🎂
+        </div>
+
+        <div class="countdown" id="countdown">
+
+            <div class="box">
+                <div class="number" id="days">00</div>
+                <div class="label">DAYS</div>
+            </div>
+
+            <div class="box">
+                <div class="number" id="hours">00</div>
+                <div class="label">HOURS</div>
+            </div>
+
+            <div class="box">
+                <div class="number" id="minutes">00</div>
+                <div class="label">MINUTES</div>
+            </div>
+
+            <div class="box">
+                <div class="number" id="seconds">00</div>
+                <div class="label">SECONDS</div>
+            </div>
+
+        </div>
+
+        <div class="love-text">
+            ❤️ Your special day is getting closer... ❤️
+            <br>
+            Just a little more waiting!
+        </div>
+
+        <div class="birthday-message" id="birthdayMessage">
+            <h2>🎉 HAPPY BIRTHDAY CHANDANI ❤️ 🎂</h2>
+            <p>You deserve all the happiness in the world! ✨</p>
+        </div>
+
+    </div>
+
+    <script>
+
+        // Birthday: 20 November 2026 at 12:00 AM
+        const birthday =
+            new Date("November 20, 2026 00:00:00").getTime();
+
+        function updateCountdown() {
+
+            const now = new Date().getTime();
+
+            const difference = birthday - now;
+
+            if (difference <= 0) {
+
+                document.getElementById("countdown").style.display = "none";
+
+                document.querySelector(".love-text").style.display = "none";
+
+                document.getElementById("birthdayMessage").style.display = "block";
+
+                return;
+            }
+
+            const days = Math.floor(
+                difference / (1000 * 60 * 60 * 24)
+            );
+
+            const hours = Math.floor(
+                (difference % (1000 * 60 * 60 * 24))
+                / (1000 * 60 * 60)
+            );
+
+            const minutes = Math.floor(
+                (difference % (1000 * 60 * 60))
+                / (1000 * 60)
+            );
+
+            const seconds = Math.floor(
+                (difference % (1000 * 60))
+                / 1000
+            );
+
+            document.getElementById("days").innerText =
+                String(days).padStart(2, "0");
+
+            document.getElementById("hours").innerText =
+                String(hours).padStart(2, "0");
+
+            document.getElementById("minutes").innerText =
+                String(minutes).padStart(2, "0");
+
+            document.getElementById("seconds").innerText =
+                String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+
+        setInterval(updateCountdown, 1000);
+
+
+        // Floating hearts
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.className = "floating-heart";
+
+            heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💕";
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (15 + Math.random() * 25) + "px";
+
+            heart.style.animationDuration =
+                (4 + Math.random() * 5) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000);
+        }
+
+        setInterval(createHeart, 600);
+
+    </script>
+
+</body>
+</html>
